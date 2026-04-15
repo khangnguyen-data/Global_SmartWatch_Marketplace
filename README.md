@@ -1,4 +1,4 @@
-# Global Smartwatch Marketplace Analysis (EDA) 📊
+# Global Smartwatch Price Prediction & Analysis ⌚🚀
 
 This repository contains an **Exploratory Data Analysis (EDA)** of a global smartwatch marketplace dataset. The project focuses on understanding pricing dynamics, geographic distribution, and the impact of shipping logistics on market value.
 
@@ -11,6 +11,12 @@ As a freshman Data Science student, I conducted this analysis to practice data c
   * `Matplotlib` & `Seaborn` (Data Visualization)
   * `Regex` (Text Extraction)
 * Environment: Jupyter Notebook / VS Code
+
+## 📁 Project Structure
+- `Data/`: Contains raw datasets and processed feature sets (`.csv`).
+- `Notebooks/`:
+    - `01_Global_Smartwatch_EDA.ipynb`: Exploratory data analysis and insights.
+    - `02_Feature_Engineering.ipynb`: Data preprocessing, Regex extraction, and encoding.
 
 ## 💡 Key Insights (EDA Phase)
 
@@ -29,9 +35,23 @@ As a freshman Data Science student, I conducted this analysis to practice data c
 
 
 
-## 🔮 Future Work (Phase 2)
-* **Feature Engineering:** Implement advanced **Regular Expressions (Regex)** to extract model series (e.g., Series 7, 8, Ultra) and case sizes directly from the `title` column.
-* **Predictive Modeling:** Build a Machine Learning model to predict smartwatch prices based on brand, origin, and technical specifications.
+---
+
+## 🛠️ Phase 2: Feature Engineering (Latest Progress)
+
+In this phase, the raw dataset was transformed into a machine-learning-ready format through several advanced engineering techniques:
+
+- **Advanced Information Extraction (Regex):** - Developed complex Regular Expression patterns to extract hidden attributes from product titles, including **Apple Series (Series 1-11, Ultra 3)**, **Case Materials (Titanium, Stainless Steel, Gold)**, and **Case Sizes**.
+- **Addressing the "Cellular Paradox":** - Discovered a pricing anomaly where Cellular models had lower median prices than GPS-only models. Resolved this by identifying the underlying "Model Tier" and "Series Age" distribution.
+- **Statistical Transformation:**
+    - Applied **Log Transformation** ($log1p$) to the target variable `price` to mitigate skewness and handle outliers, ensuring a more normal distribution for model stability.
+- **Strategic Encoding:**
+    - **Ordinal Encoding:** Ranked categorical features with inherent order such as `condition` (New > Refurbished > Used) and `model_tier`.
+    - **One-Hot Encoding:** Converted nominal features like `brand`, `material`, and `Country` into binary vectors while avoiding the dummy variable trap.
+- **Project Restructuring:**
+    - Organized the repository into a modular structure (`Data/` and `Notebooks/` folders) for better scalability and maintainability.
+
+> **Status:** Dataset is now 100% clean with zero null values, fully encoded, and ready for the Predictive Modeling phase.
 
 ---
 **Author**: Tuan Khang  
