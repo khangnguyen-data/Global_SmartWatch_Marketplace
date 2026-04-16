@@ -50,9 +50,38 @@ In this phase, the raw dataset was transformed into a machine-learning-ready for
     - **One-Hot Encoding:** Converted nominal features like `brand`, `material`, and `Country` into binary vectors while avoiding the dummy variable trap.
 - **Project Restructuring:**
     - Organized the repository into a modular structure (`Data/` and `Notebooks/` folders) for better scalability and maintainability.
+---
 
-> **Status:** Dataset is now 100% clean with zero null values, fully encoded, and ready for the Predictive Modeling phase.
+### 🛠 Phase 3: Predictive Modeling (Machine Learning)
 
+In this final phase, I implemented several regression models to predict the market price of smartwatches. The goal was to establish a robust baseline and optimize performance using advanced boosting techniques.
+
+#### **1. Models Implemented**
+* **Linear Regression:** Established as the baseline model to understand basic linear relationships.
+* **Random Forest Regressor:** A robust ensemble method to capture non-linear patterns and feature interactions.
+* **XGBoost (Extreme Gradient Boosting):** The champion model, optimized for high performance and handling complex tabular data.
+
+#### **2. Key Optimization Techniques**
+* **Hyperparameter Tuning:** Utilized `GridSearchCV` to find the optimal configuration (e.g., `learning_rate: 0.05`, `max_depth: 6`).
+* **5-Fold Cross-Validation:** Ensured model stability and generalizability across different data subsets, preventing overfitting.
+* **Evaluation Metrics:** Used **MAE** (Mean Absolute Error) for real-world cost interpretation and **$R^2$ Score** to measure explained variance.
+
+#### **3. Performance Comparison**
+
+| Model | MAE ($) | $R^2$ Score | Status |
+| :--- | :---: | :---: | :--- |
+| **Linear Regression** | ~$119.90$ | $0.1878$ | Underperforming |
+| **Random Forest** | ~$98.25$ | $0.4131$ | Good |
+| **XGBoost (Tuned)** | **~$96.44$** | **$0.4462$** | **Best Performance** |
+
+#### **4. Critical Insights & Lessons Learned**
+* **The Data Ceiling:** Even with advanced tuning, the $R^2$ peaked at **0.4462**. This highlights the high variance in marketplace data (e.g., subjective pricing, hidden conditions not captured in the dataset).
+* **Preprocessing Impact:** The **Log Transformation ($log1p$)** applied in Phase 2 was crucial for handling price skewness, significantly improving model convergence.
+* **Technical Troubleshooting:** Successfully integrated **OpenMP (`libomp`)** to enable parallel computing for XGBoost on macOS (Apple Silicon), a vital skill for local development.
+
+> **Final Takeaway:** While the model captures nearly 45% of pricing dynamics, the next leap in accuracy would come from deeper Feature Engineering (e.g., extracting battery health or warranty status from titles).
+
+> **Status:** Project completed with a functional Predictive Pipeline.
 ---
 **Author**: Tuan Khang  
 **Level**: 1st Year Data Science Student  
